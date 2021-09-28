@@ -9,3 +9,7 @@ class SeminarViewSet(viewsets.ModelViewSet):
     queryset = Seminar.objects.all()
     permissions = (IsAdminUserOrAuthenticatedReadOnly, )
     serializer_class = SeminarSerializers
+
+    def perform_create(self, serializer):
+        creater = self.request.user
+        serializer.save(creater=creater)

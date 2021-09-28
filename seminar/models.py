@@ -29,10 +29,12 @@ class Seminar(models.Model):
     place = models.CharField("場所", max_length=255)
     start_date = models.DateField(verbose_name="開催日")
     end_date = models.DateField(verbose_name="終了日")
-    start_application_date = models.DateField(verbose_name="申込開始日", null=True)
-    end_application_date = models.DateField(verbose_name="申込締切日", null=True)
+    start_application_date = models.DateField(
+        verbose_name="申込開始日", blank=True, null=True)
+    end_application_date = models.DateField(
+        verbose_name="申込締切日", blank=True, null=True)
     number_of_attendees = models.IntegerField(verbose_name="出席者", default=0)
-    capacity = models.IntegerField(verbose_name="定員", null=True)
+    capacity = models.IntegerField(verbose_name="定員", blank=True, null=True)
 
     application_page = models.URLField(
         verbose_name="申込ページ", max_length=200, blank=True)
@@ -45,10 +47,14 @@ class Seminar(models.Model):
     is_reserved = models.BooleanField(verbose_name="ZOOM予約", default=False)
 
     # Mail
-    invitation_mail = models.DateField(verbose_name="招待メール配信日", null=True)
-    remaind_mail = models.DateField(verbose_name="リマインドメール配信日", null=True)
-    viewing_guide_mail = models.DateField(verbose_name="視聴案内メール配信日", null=True)
-    thank_you_mail = models.DateField(verbose_name="御礼メール配信日", null=True)
+    invitation_mail = models.DateField(
+        verbose_name="招待メール配信日", blank=True, null=True)
+    remaind_mail = models.DateField(
+        verbose_name="リマインドメール配信日", blank=True, null=True)
+    viewing_guide_mail = models.DateField(
+        verbose_name="視聴案内メール配信日", blank=True, null=True)
+    thank_you_mail = models.DateField(
+        verbose_name="御礼メール配信日", blank=True, null=True)
 
     creater = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True)
