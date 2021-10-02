@@ -25,8 +25,10 @@ class Seminar(models.Model):
         verbose_name="開催方法", max_length=10, choices=method_choices)
     affiliation = models.CharField(
         "所属", max_length=5, choices=affiliation_choices)
-    staff = models.CharField(verbose_name="担当者", max_length=50)
-    place = models.CharField("場所", max_length=255)
+    department = models.CharField(verbose_name="部署", max_length=50)
+    staff = models.CharField(
+        verbose_name="担当者", max_length=50, blank=True, null=True)
+    place = models.CharField("場所", max_length=255, blank=True, null=True)
     start_date = models.DateField(verbose_name="開催日")
     end_date = models.DateField(verbose_name="終了日")
     start_application_date = models.DateField(
@@ -37,13 +39,13 @@ class Seminar(models.Model):
     capacity = models.IntegerField(verbose_name="定員", blank=True, null=True)
 
     application_page = models.URLField(
-        verbose_name="申込ページ", max_length=200, blank=True)
+        verbose_name="申込ページ", max_length=200, blank=True, null=True)
     application_list = models.URLField(
-        verbose_name="申込者一覧", max_length=200, blank=True)
+        verbose_name="申込者一覧", max_length=200, blank=True, null=True)
     audience_page = models.URLField(
-        verbose_name="視聴ページ", max_length=200, blank=True)
+        verbose_name="視聴ページ", max_length=200, blank=True, null=True)
     event_page = models.URLField(
-        verbose_name="イベントページ", max_length=200, blank=True)
+        verbose_name="イベントページ", max_length=200, blank=True, null=True)
     is_reserved = models.BooleanField(verbose_name="ZOOM予約", default=False)
 
     # Mail
